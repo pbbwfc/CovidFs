@@ -13,6 +13,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Results", "Results", "{4F90
 		Results\modeled1.csv = Results\modeled1.csv
 	EndProjectSection
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CovidFs2", "CovidFs2\CovidFs2.fsproj", "{82AC89CC-9293-410F-914E-A002582C1601}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Results2", "Results2", "{80C4F2F2-1555-47A9-BE1D-EBC1DA474A7C}"
+	ProjectSection(SolutionItems) = preProject
+		Results2\chart.xlsx = Results2\chart.xlsx
+		Results2\COVID19_by_day.csv = Results2\COVID19_by_day.csv
+		Results2\COVID19_deaths.csv = Results2\COVID19_deaths.csv
+		Results2\modeled.csv = Results2\modeled.csv
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +33,10 @@ Global
 		{84E0F467-1D37-4B8F-A642-756422207B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84E0F467-1D37-4B8F-A642-756422207B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84E0F467-1D37-4B8F-A642-756422207B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82AC89CC-9293-410F-914E-A002582C1601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82AC89CC-9293-410F-914E-A002582C1601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82AC89CC-9293-410F-914E-A002582C1601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82AC89CC-9293-410F-914E-A002582C1601}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
