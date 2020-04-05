@@ -29,7 +29,7 @@ module Data =
     let ifr = [|0.00002;0.0009;0.001;0.0012;0.0023;0.0068;0.0187;0.0414;0.0768|]
     let hosp_prop = ifr|>Array.map(fun i -> i * 8.04)
 
-    let R0 = 4.0//adjust to fit
+    let R0 = 4.4//adjust to fit
 
     //cross check ifr
     let agegroups =

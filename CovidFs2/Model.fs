@@ -3,7 +3,7 @@ open System
 
 module Model =
 
-    let Calc(prop:float,newR0:float) =
+    let CalcFit(prop:float,oldR0:float,newR0:float) =
         let well = XTvar(91,1000)
         let latent1 = XTvar(91,1000)
         let latent2 = XTvar(91,1000)
@@ -436,7 +436,7 @@ module Model =
             
             if t<=15 then initial.[x]
             elif t<Data.lockdownt then
-                contag.[t-1] * Data.R0 * well.[x,t]/(20.0 * allwell.[0])
+                contag.[t-1] * oldR0 * well.[x,t]/(20.0 * allwell.[0])
                 //reduce by proportion in well
             else
                 contag.[t-1] * repR0 * well.[x,t]/(20.0 * allwell.[0])
@@ -551,3 +551,5 @@ module Model =
         let resultt = ["Total Contagious",contag|>lstday;"Total Well",allwell|>lstday;"Clinically Infectious",clin|>lstday;"Cases",cases|>lstday;"New Cases",newcases|>sumday;"Deaths",allhdths|>lstday;"New Deaths",newhdths|>sumday]|>dict
 
         resultt,resultxt
+
+    let Calc(prop:float,newR0:float) = CalcFit(prop,Data.R0,newR0)

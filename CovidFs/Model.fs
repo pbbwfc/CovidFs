@@ -3,7 +3,7 @@ open System
 
 module Model =
 
-    let Calc(prop:float,newR0:float) =
+    let CalcFit(prop:float,oldR0:float,newR0:float) =
         let well = XTvar(91,200)
         let inf0 = XTvar(91,200)
         let inf1 = XTvar(91,200)
@@ -131,7 +131,7 @@ module Model =
         let fninf0 (x,t) =
             if t=0 then initial.[x]
             elif t<Data.lockdownt then
-                infect.[t-1] * Data.R0 * well.[x,t]/(5.0 * allwell.[0])
+                infect.[t-1] * oldR0 * well.[x,t]/(5.0 * allwell.[0])
                 //reduce by proportion in well
             else
                 infect.[t-1] * newR0 * well.[x,t]/(5.0 * allwell.[0])
@@ -165,3 +165,5 @@ module Model =
         let resultt = ["Total Sick",sick.Vals;"Total Recov",allrecov.Vals;"Total New Recov",allnewrecov.Vals;"Total Deaths",alldths.Vals;"Cumulative Deaths",cumdths.Vals]|>dict
 
         resultt,resultxt
+
+    let Calc(prop:float,newR0:float) = CalcFit(prop,Data.R0,newR0)

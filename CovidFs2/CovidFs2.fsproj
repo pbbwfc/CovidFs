@@ -9,6 +9,7 @@
     <Compile Include="Types.fs" />
     <Compile Include="Data.fs" />
     <Compile Include="Model.fs" />
+    <Compile Include="Fit.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

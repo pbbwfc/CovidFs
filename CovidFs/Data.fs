@@ -15,7 +15,7 @@ module Data =
     let lockdownt = 82
     let incub_per = 5
     let infect_per = 5
-    let R0 = 5.5//2.4
+    let R0 = 5.3//2.4
     let hidden = 0.5
     //from https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf
     let age_grp_bot = [|0;10;20;30;40;50;60;70;80|]

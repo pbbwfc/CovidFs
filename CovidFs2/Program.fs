@@ -7,7 +7,11 @@ open System.IO
 
 [<EntryPoint>]
 let main argv =
-    let rest,res = Model.Calc(0.00001,-1.0)
+    //let p,r,s = Fit.result
+    //results of fit: p=9E-06, r=4.4
+
+
+    let rest,res = Model.Calc(9E-06,4.4)
     //lockdown date figures/reconcile
     //let dthsld = res.["Deaths"].[*,82]
     //let nrecld = res.["New Recov"].[*,82]
@@ -25,7 +29,7 @@ let main argv =
         File.AppendAllText(csv,dt.ToShortDateString() + "," + rest.["New Cases"].[t].ToString() + "," + rest.["Cases"].[t].ToString() + "," + rest.["New Deaths"].[t].ToString() + "," + rest.["Deaths"].[t].ToString())
         File.AppendAllText(csv,nl)
     ////repeat but with fix on R0
-    let rest1,res1 = Model.Calc(0.00001,1.0)
+    let rest1,res1 = Model.Calc(9E-06,1.0)
     let csv1 = Path.Combine(fol,"modeled1.csv")
     if File.Exists(csv1) then File.Delete(csv1)
     File.AppendAllText(csv1,"Date,NewCase,CumCases,NewDeaths,Deaths")

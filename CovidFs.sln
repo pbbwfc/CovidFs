@@ -7,8 +7,8 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "CovidFs", "CovidFs\CovidFs.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Results", "Results", "{4F900425-808F-443B-A7B0-F20AC672BA17}"
 	ProjectSection(SolutionItems) = preProject
-		Results\actuals.csv = Results\actuals.csv
 		Results\chart.xlsx = Results\chart.xlsx
+		Results\COVID19_by_day.csv = Results\COVID19_by_day.csv
 		Results\modeled.csv = Results\modeled.csv
 		Results\modeled1.csv = Results\modeled1.csv
 	EndProjectSection
