@@ -61,7 +61,8 @@ module Model =
         let clin12 = XTvar(91,1000)
         let clin13 = XTvar(91,1000)
         let clin14 = XTvar(91,1000)
-        
+        let hdths = XTvar(91,1000)
+
         //totals across ages
         let allwell = Tvar(1000)
         let latent = Tvar(1000)
@@ -71,7 +72,8 @@ module Model =
         let contag = Tvar(1000)
         let newcases = Tvar(1000)
         let cases = Tvar(1000)
-
+        let newhdths = Tvar(1000) 
+        let allhdths = Tvar(1000)
 
 
         //functions
@@ -360,17 +362,21 @@ module Model =
         //    else
         //        recov.[x,t-1] + inf9.[x,t-1] - dths.[x,t]
 
-        //let fndths (x,t) =
-        //    if t=0 then 0.0
-        //    elif x<Data.age_grp_bot.[1] then inf9.[x,t-1]*Data.ifr.[0]
-        //    elif x<Data.age_grp_bot.[2] then inf9.[x,t-1]*Data.ifr.[1]
-        //    elif x<Data.age_grp_bot.[3] then inf9.[x,t-1]*Data.ifr.[2]
-        //    elif x<Data.age_grp_bot.[4] then inf9.[x,t-1]*Data.ifr.[3]
-        //    elif x<Data.age_grp_bot.[5] then inf9.[x,t-1]*Data.ifr.[4]
-        //    elif x<Data.age_grp_bot.[6] then inf9.[x,t-1]*Data.ifr.[5]
-        //    elif x<Data.age_grp_bot.[7] then inf9.[x,t-1]*Data.ifr.[6]
-        //    elif x<Data.age_grp_bot.[8] then inf9.[x,t-1]*Data.ifr.[7]
-        //    else inf9.[x,t-1]*Data.ifr.[8]
+        let fnhdths (x,t) =
+            //report assumes 7 days to hospitalisation then either 8 or 10 days to death depending on whether put in ICU
+            //I assume clin1 is after 1.5 days so use clin1 14.5 days ago
+            //This is t-58
+            
+            if t<=58 then 0.0
+            elif x<Data.age_grp_bot.[1] then clin1.[x,t-58]*Data.ifr.[0]
+            elif x<Data.age_grp_bot.[2] then clin1.[x,t-58]*Data.ifr.[1]
+            elif x<Data.age_grp_bot.[3] then clin1.[x,t-58]*Data.ifr.[2]
+            elif x<Data.age_grp_bot.[4] then clin1.[x,t-58]*Data.ifr.[3]
+            elif x<Data.age_grp_bot.[5] then clin1.[x,t-58]*Data.ifr.[4]
+            elif x<Data.age_grp_bot.[6] then clin1.[x,t-58]*Data.ifr.[5]
+            elif x<Data.age_grp_bot.[7] then clin1.[x,t-58]*Data.ifr.[6]
+            elif x<Data.age_grp_bot.[8] then clin1.[x,t-58]*Data.ifr.[7]
+            else clin1.[x,t-58]*Data.ifr.[8]
 
         //functions for all ages
         let fnlatent(t) =
@@ -412,6 +418,12 @@ module Model =
         let fnallwell(t) =
             [0..90]|>List.map(fun i -> well.[i,t])|>List.sum
 
+        let fnnewhdths(t) =
+            [0..90]|>List.map(fun i -> hdths.[i,t])|>List.sum
+
+        let fnallhdths(t) =
+            if t=0 then 0.0
+            else allhdths.[t-1] + newhdths.[t]
         
         //adjust key function based on inputs
         let initial =
@@ -419,12 +431,15 @@ module Model =
             emp|>Array.map(fun x -> (Data.males.[x] + Data.females.[x]) * prop /100.0)
         
         let fnlatent1 (x,t) =
+            //set replacement R0
+            let repR0 = if newR0= -1.0 then Data.R0 else newR0
+            
             if t<=15 then initial.[x]
             elif t<Data.lockdownt then
                 contag.[t-1] * Data.R0 * well.[x,t]/(20.0 * allwell.[0])
                 //reduce by proportion in well
             else
-                contag.[t-1] * newR0 * well.[x,t]/(20.0 * allwell.[0])
+                contag.[t-1] * repR0 * well.[x,t]/(20.0 * allwell.[0])
                 //reduce by proportion in well
         
         //initialise
@@ -485,7 +500,7 @@ module Model =
         clin12.Init fnclin12
         clin13.Init fnclin13
         clin14.Init fnclin14
-
+        hdths.Init fnhdths
 
         //initialise for all ages
         allwell.Init fnallwell
@@ -496,6 +511,8 @@ module Model =
         contag.Init fncontag
         newcases.Init fnnewcases
         cases.Init fncases
+        newhdths.Init fnnewhdths
+        allhdths.Init fnallhdths
 
         //debug vars
         let well020 = [|0..20|]|>Array.map(fun i -> allwell.[i])
@@ -531,6 +548,6 @@ module Model =
 
         //decide what to keep
         let resultxt = ["Males Current Well",well.Vals]|>dict
-        let resultt = ["Total Contagious",contag|>lstday;"Total Well",allwell|>lstday;"Clinically Infectious",clin|>lstday;"Cases",cases|>lstday;"New Cases",newcases|>sumday]|>dict
+        let resultt = ["Total Contagious",contag|>lstday;"Total Well",allwell|>lstday;"Clinically Infectious",clin|>lstday;"Cases",cases|>lstday;"New Cases",newcases|>sumday;"Deaths",allhdths|>lstday;"New Deaths",newhdths|>sumday]|>dict
 
         resultt,resultxt

@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Results", "Results", "{4F90
 		Results\modeled1.csv = Results\modeled1.csv
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CovidFs2", "CovidFs2\CovidFs2.fsproj", "{82AC89CC-9293-410F-914E-A002582C1601}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "CovidFs2", "CovidFs2\CovidFs2.fsproj", "{82AC89CC-9293-410F-914E-A002582C1601}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Results2", "Results2", "{80C4F2F2-1555-47A9-BE1D-EBC1DA474A7C}"
 	ProjectSection(SolutionItems) = preProject
@@ -21,6 +21,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Results2", "Results2", "{80
 		Results2\COVID19_by_day.csv = Results2\COVID19_by_day.csv
 		Results2\COVID19_deaths.csv = Results2\COVID19_deaths.csv
 		Results2\modeled.csv = Results2\modeled.csv
+		Results2\modeled1.csv = Results2\modeled1.csv
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{6E2F8434-C7C7-4EF2-A195-E30E6F8F4A08}"
+	ProjectSection(SolutionItems) = preProject
+		Reports\Imperial College COVID19 NPI modelling 16-03-2020.pdf = Reports\Imperial College COVID19 NPI modelling 16-03-2020.pdf
+		Reports\uk_scenario_modelling_preprint_2020_04_01.pdf = Reports\uk_scenario_modelling_preprint_2020_04_01.pdf
 	EndProjectSection
 EndProject
 Global

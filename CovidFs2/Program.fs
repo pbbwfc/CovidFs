@@ -7,7 +7,7 @@ open System.IO
 
 [<EntryPoint>]
 let main argv =
-    let rest,res = Model.Calc(0.000002,4.0)
+    let rest,res = Model.Calc(0.00001,-1.0)
     //lockdown date figures/reconcile
     //let dthsld = res.["Deaths"].[*,82]
     //let nrecld = res.["New Recov"].[*,82]
@@ -18,22 +18,22 @@ let main argv =
     let csv = Path.Combine(fol,"modeled.csv")
     if File.Exists(csv) then File.Delete(csv)
     let nl = Environment.NewLine
-    File.AppendAllText(csv,"Date,NewCase,CumCases")
+    File.AppendAllText(csv,"Date,NewCase,CumCases,NewDeaths,Deaths")
     File.AppendAllText(csv,nl)
     for t=0 to 200 do
         let dt = t|>Data.currdy
-        File.AppendAllText(csv,dt.ToShortDateString() + "," + rest.["New Cases"].[t].ToString() + "," + rest.["Cases"].[t].ToString())
+        File.AppendAllText(csv,dt.ToShortDateString() + "," + rest.["New Cases"].[t].ToString() + "," + rest.["Cases"].[t].ToString() + "," + rest.["New Deaths"].[t].ToString() + "," + rest.["Deaths"].[t].ToString())
         File.AppendAllText(csv,nl)
     ////repeat but with fix on R0
-    //let rest1,res1 = Model.Calc(0.0000000085,1.0)
-    //let csv1 = Path.Combine(fol,"modeled1.csv")
-    //if File.Exists(csv1) then File.Delete(csv1)
-    //File.AppendAllText(csv1,"Date,Cumulative Deaths,Total Recovered")
-    //File.AppendAllText(csv1,nl)
-    //for t=65 to 100 do
-    //    let dt = t|>Data.currdt
-    //    File.AppendAllText(csv1,dt.ToShortDateString() + "," + rest1.["Cumulative Deaths"].[t].ToString() + "," + rest1.["Total Recov"].[t].ToString())
-    //    File.AppendAllText(csv1,nl)
+    let rest1,res1 = Model.Calc(0.00001,1.0)
+    let csv1 = Path.Combine(fol,"modeled1.csv")
+    if File.Exists(csv1) then File.Delete(csv1)
+    File.AppendAllText(csv1,"Date,NewCase,CumCases,NewDeaths,Deaths")
+    File.AppendAllText(csv1,nl)
+    for t=0 to 200 do
+        let dt = t|>Data.currdy
+        File.AppendAllText(csv1,dt.ToShortDateString() + "," + rest1.["New Cases"].[t].ToString() + "," + rest1.["Cases"].[t].ToString() + "," + rest1.["New Deaths"].[t].ToString() + "," + rest1.["Deaths"].[t].ToString())
+        File.AppendAllText(csv1,nl)
 
 
 
