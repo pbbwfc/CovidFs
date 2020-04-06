@@ -3,7 +3,7 @@ open System
 
 module Model =
 
-    let CalcFit(prop:float,oldR0:float,newR0:float) =
+    let Calc(prop:float,oldR0:float,newR0:float) =
         let well = XTvar(91,1000)
         let latent1 = XTvar(91,1000)
         let latent2 = XTvar(91,1000)
@@ -427,8 +427,7 @@ module Model =
         
         //adjust key function based on inputs
         let initial =
-            let emp = Array.zeroCreate 91
-            emp|>Array.map(fun x -> (Data.males.[x] + Data.females.[x]) * prop /100.0)
+            [|0..90|]|>Array.map(fun x -> (Data.males.[x] + Data.females.[x]) * prop /100.0)
         
         let fnlatent1 (x,t) =
             //set replacement R0
@@ -552,4 +551,3 @@ module Model =
 
         resultt,resultxt
 
-    let Calc(prop:float,newR0:float) = CalcFit(prop,Data.R0,newR0)

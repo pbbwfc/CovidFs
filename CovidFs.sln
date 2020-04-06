@@ -30,6 +30,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{6E2F
 		Reports\uk_scenario_modelling_preprint_2020_04_01.pdf = Reports\uk_scenario_modelling_preprint_2020_04_01.pdf
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Results3", "Results3", "{0A0DA8D4-ADFC-4AF4-8651-9DEFBEE5711A}"
+	ProjectSection(SolutionItems) = preProject
+		Results3\chart.xlsx = Results3\chart.xlsx
+		Results3\COVID19_by_day.csv = Results3\COVID19_by_day.csv
+		Results3\modeled.csv = Results3\modeled.csv
+		Results3\modeled1.csv = Results3\modeled1.csv
+	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CovidFs3", "CovidFs3\CovidFs3.fsproj", "{F905B537-2928-4E19-B464-EA6BFC8A8BF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +54,10 @@ Global
 		{82AC89CC-9293-410F-914E-A002582C1601}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82AC89CC-9293-410F-914E-A002582C1601}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82AC89CC-9293-410F-914E-A002582C1601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F905B537-2928-4E19-B464-EA6BFC8A8BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F905B537-2928-4E19-B464-EA6BFC8A8BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F905B537-2928-4E19-B464-EA6BFC8A8BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F905B537-2928-4E19-B464-EA6BFC8A8BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

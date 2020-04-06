@@ -10,15 +10,9 @@ let main argv =
     //let p,r,s = Fit.result
     //results of fit: p=7.8E-06, r=4.5
 
-
     let rest,res = Model.Calc(7.8E-06,4.5,4.5)
-    //lockdown date figures/reconcile
-    //let dthsld = res.["Deaths"].[*,82]
-    //let nrecld = res.["New Recov"].[*,82]
-    //let cumdthsld = rest.["Cumulative Deaths"].[82]
-    //let ratio = cumdthsld/Data.actcumdthsld
     ////export CSV
-    let fol = @"D:\GitHub\CovidFs\Results2"
+    let fol = @"D:\GitHub\CovidFs\Results3"
     let csv = Path.Combine(fol,"modeled.csv")
     if File.Exists(csv) then File.Delete(csv)
     let nl = Environment.NewLine

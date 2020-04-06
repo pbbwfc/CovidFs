@@ -21,7 +21,7 @@ module Fit =
             for r in rs do
                 yield getdths p r]
 
-    //let result  = 
-    //    let all = dofit()
-    //    all|>List.minBy(fun (p,r,s) -> s)
+    let result  = 
+        let all = dofit()
+        all|>List.minBy(fun (p,r,s) -> s)
 

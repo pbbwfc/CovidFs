@@ -57,3 +57,5 @@ module Data =
     let totcalcifr = calcifr|>Array.sum
 
     let estifr = totcalcifr/totages //1.2% - seem a bit high
+
+    let test = ((males|>Array.sum) + (females|>Array.sum)) * 9E-06/100.0
